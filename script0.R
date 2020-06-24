@@ -110,3 +110,13 @@ US_k4 %>%
     geom_tile(aes(fill = as.factor(cl))) +
     theme_minimal() + scale_fill_brewer(type = "qual",
                                         palette = "Set1")
+
+png("cluster_membership_over_time.png",height=2000,width=800)
+
+US_k4 %>%
+    mutate(country = fct_reorder(country,cluster_stability)) %>%
+    ggplot(aes(year,country)) +
+    geom_tile(aes(fill = as.factor(cl))) +
+    theme_minimal() + scale_fill_brewer(type = "qual",
+                                        palette = "Set1")
+dev.off()
